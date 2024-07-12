@@ -6,6 +6,7 @@ local StudioService = game:GetService("StudioService")
 local defaultSettings = require(script.defaultSettings)
 local Logger = require(script.Logger)
 
+local PORT = 55096
 local FORMAT_URL = "http://localhost:%s/format"
 
 local toolBar = plugin:CreateToolbar("Stylua Format")
@@ -44,7 +45,7 @@ local function formatSource(source: string)
 	local styluaServeSettings = getSettings()
 	local styluaOptions = styluaServeSettings.styluaOptions
 
-	local url = string.format(FORMAT_URL, styluaServeSettings.port)
+	local url = string.format(FORMAT_URL, PORT)
 
 	local body = {
 		options = styluaOptions,
@@ -120,8 +121,4 @@ settingsButton.Click:Connect(function()
 	if not isOk then
 		Logger.warn(`Failed to open settings script: {err}`)
 	end
-end)
-
-plugin.Deactivation:Connect(function()
-	Logger.warn("Deactivation unimplemented!")
 end)

@@ -1,5 +1,4 @@
 return {
-	port = 55096,
 	styluaOptions = {
 		column_width = 120,
 		line_endings = "Unix",

@@ -1,25 +1,26 @@
 use axum::{
-    http::StatusCode, routing::{get, post}, Json, Router
+    http::StatusCode,
+    routing::{get, post},
+    Json, Router,
 };
-use serde_json::Value;
 use stylua_lib::Config;
 
 async fn root() -> &'static str {
     "hello world"
 }
 
-async fn format_request(body: Json<Value>) -> (StatusCode, String) {
-    let source = match body.get("source").and_then(|val| val.as_str()) {
-        Some(source) => source,
-        None => return (StatusCode::BAD_REQUEST, "Missing source".to_owned()),
-    };
+#[derive(serde::Deserialize)]
+struct FormatRequest {
+    source: String,
+    options: Option<Config>,
+}
 
-    let config = Config {
-        ..Default::default()
-    };
+async fn format_request(body: Json<FormatRequest>) -> (StatusCode, String) {
+    let source = body.0.source;
+    let options = body.0.options.unwrap_or_default();
 
     let format_result =
-        stylua_lib::format_code(source, config, None, stylua_lib::OutputVerification::None);
+        stylua_lib::format_code(&source, options, None, stylua_lib::OutputVerification::None);
 
     match format_result {
         Ok(source) => (StatusCode::OK, source),
