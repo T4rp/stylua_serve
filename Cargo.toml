@@ -1,0 +1,10 @@
+[package]
+name = "stylua_serve"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.7.5"
+serde_json = "1.0.120"
+stylua = { version = "0.20.0", features = ["luau"] }
+tokio = { version = "1.38.0", features = ["macros", "net", "rt", "rt-multi-thread"] }

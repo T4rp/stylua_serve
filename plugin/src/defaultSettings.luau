@@ -1,0 +1,15 @@
+return {
+	port = 55096,
+	styluaOptions = {
+		column_width = 120,
+		line_endings = "Unix",
+		indent_type = "Tabs",
+		indent_width = 4,
+		quote_style = "AutoPreferDouble",
+		call_parentheses = "Always",
+		collapse_simple_statement = "Never",
+		sort_requires = {
+			enabled = false,
+		},
+	},
+}

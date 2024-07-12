@@ -1,0 +1,4 @@
+/target
+/plugin/sourcemap.json
+*.rbxm
+*.rbxmx
