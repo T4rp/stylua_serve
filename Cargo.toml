@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 axum = "0.7.5"
+roblox_install = "1.0.0"
 serde = { version = "1.0.204", features = ["derive"] }
 stylua = { version = "0.20.0", features = ["luau"] }
-tokio = { version = "1.38.0", features = ["macros", "net", "rt", "rt-multi-thread"] }
+tokio = { version = "1.38.0", features = ["net", "rt", "rt-multi-thread"] }
