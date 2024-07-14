@@ -4,10 +4,13 @@ local ScriptEditorService = game:GetService("ScriptEditorService")
 local ServerStorage = game:GetService("ServerStorage")
 local StudioService = game:GetService("StudioService")
 local defaultSettings = require(script.defaultSettings)
-local Logger = require(script.Logger)
 
 local PORT = 55096
 local FORMAT_URL = "http://localhost:%s/format"
+
+local function logWarn(str)
+	warn(string.format("[StyluaServePlugin] %s", str))
+end
 
 local toolBar = plugin:CreateToolbar("Stylua Format")
 
@@ -24,14 +27,14 @@ local function getSettings()
 		local fn, err = loadstring(settingsScript.Source)
 
 		if err then
-			Logger.warn(`Could not load StyluaServeSettings: {err}`)
+			logWarn(`Could not load StyluaServeSettings: {err}`)
 			return nil
 		end
 
 		local isOk, resultOrErr = pcall(fn)
 
 		if not isOk then
-			Logger.warn(`Failed to load StyluaServeSettings: {resultOrErr}`)
+			logWarn(`Failed to load StyluaServeSettings: {resultOrErr}`)
 			return nil
 		end
 
@@ -99,7 +102,7 @@ formatButton.Click:Connect(function()
 	local formatted, err = formatSource(source)
 
 	if err then
-		Logger.warn(`Failed to format: {err}`)
+		logWarn(`Failed to format: {err}`)
 		return
 	end
 
@@ -119,6 +122,6 @@ settingsButton.Click:Connect(function()
 	local isOk, err = pcall(ScriptEditorService.OpenScriptDocumentAsync, ScriptEditorService, settingsScript)
 
 	if not isOk then
-		Logger.warn(`Failed to open settings script: {err}`)
+		logWarn(`Failed to open settings script: {err}`)
 	end
 end)
