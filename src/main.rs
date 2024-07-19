@@ -45,8 +45,10 @@ async fn serve() {
 fn start_server() {
     println!("Listening on http://localhost:55096");
 
-    tokio::runtime::Builder::new_current_thread()
+    tokio::runtime::Builder::new_multi_thread()
         .enable_all()
+        .worker_threads(1)
+        .thread_stack_size(6 * 1024 * 1024)
         .build()
         .unwrap()
         .block_on(async { serve().await })
