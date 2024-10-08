@@ -1,8 +1,13 @@
-use std::process::Command;
+use librojo::cli::BuildCommand;
+use std::path::PathBuf;
 
 fn main() {
-    Command::new("rojo")
-        .args(["build", "plugin", "-o", "StyluaServePlugin.rbxm"])
-        .spawn()
-        .unwrap();
+    let command = BuildCommand {
+        project: PathBuf::from("plugin"),
+        output: Some(PathBuf::from("StyluaServePlugin.rbxm")),
+        plugin: None,
+        watch: false,
+    };
+
+    command.run().expect("Failed to build plugin");
 }

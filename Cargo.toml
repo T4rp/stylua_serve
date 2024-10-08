@@ -9,3 +9,6 @@ roblox_install = "1.0.0"
 serde = { version = "1.0.204", features = ["derive"] }
 stylua = { version = "0.20.0", features = ["luau"] }
 tokio = { version = "1.38.0", features = ["net", "rt", "rt-multi-thread"] }
+
+[build-dependencies]
+rojo = "7.4.4"

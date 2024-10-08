@@ -56,7 +56,10 @@ fn start_server() {
 
 fn install_plugin() {
     let studio = roblox_install::RobloxStudio::locate().expect("Couldn't find Roblox Studio");
-    let plugin_path = studio.plugins_path().to_path_buf().join("StyluaServePlugin.rbxm");
+    let plugin_path = studio
+        .plugins_path()
+        .to_path_buf()
+        .join("StyluaServePlugin.rbxm");
 
     fs::write(&plugin_path, PLUGIN_DATA).expect("Failed to install plugin");
 
