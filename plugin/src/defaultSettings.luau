@@ -1,11 +1,13 @@
 return {
 	styluaOptions = {
+		syntax = "Luau",
 		column_width = 120,
 		line_endings = "Unix",
 		indent_type = "Tabs",
 		indent_width = 4,
 		quote_style = "AutoPreferDouble",
 		call_parentheses = "Always",
+		space_after_function_names = "Never",
 		collapse_simple_statement = "Never",
 		sort_requires = {
 			enabled = false,
